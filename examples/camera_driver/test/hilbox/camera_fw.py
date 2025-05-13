@@ -18,9 +18,4 @@ class CameraFW(FW):
                 return {"ok":True}
             return {"err":"bad color"}
 
-        @self.rpc
-        def capture():
-            # stub – return dummy data
-            return {"img":"<jpeg bytes…>"}
-
 CameraFW().serve()
