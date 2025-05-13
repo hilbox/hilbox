@@ -1,12 +1,8 @@
-from hilbox import Box
-from typing import Sequence, Dict
+from box import Box
 
 class CameraBox(Box):
-    """
-    HIL client for camera‐specific endpoints.
-    """
+    async def capture(self):
+        return await self.call("capture")
 
-    def set_color(self, c: Sequence[int]) -> Dict:
-        if len(c) != 3 or any(not (0 <= x <= 255) for x in c):
-            raise ValueError("color must be three ints 0–255")
-        return self.post('/display/color', {'c': list(c)})
+    async def set_color(self, r,g,b):
+        return await self.call("set_color", {"c":[r,g,b]})
