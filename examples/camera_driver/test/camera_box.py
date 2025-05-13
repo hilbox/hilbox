@@ -1,4 +1,4 @@
-from box import Box
+from hilbox import Box
 
 class CameraBox(Box):
     async def set_color(self, r,g,b):
