@@ -1,5 +1,5 @@
 import secrets
-from hilbox import FW
+from uhilbox import FW
 from machine import Pin
 from neopixel import NeoPixel
 
