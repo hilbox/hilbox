@@ -6,7 +6,9 @@ from neopixel import NeoPixel
 class CameraFW(FW):
     def __init__(self):
         super().__init__()
-        self.px = neopixel.NeoPixel(machine.Pin(48), 1)
+        self.px = neopixel.NeoPixel(machine.Pin(48), 1) # TODO does this work
+        self.pixels[0] = (0, 0, 0)
+        self.pixels.write()
 
         @self.rpc           # decorator from FW
         def ping(): return {"pong":True}
