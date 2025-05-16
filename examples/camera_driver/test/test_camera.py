@@ -4,15 +4,18 @@ import pytest
 from camera import Webcam
 from camera_box import CameraBox
 
-BOX_URL = "http://192.168.1.25" #  ESP32’s IP
-LED_DELAY   = 0.3               # seconds to wait after setting colour
-TOLERANCE   = 40                # per-channel tolerance for “dominant”
+# Configuration
+SERIAL_PORT = "/dev/ttyUSB0"  # Change this to match your system
+LED_DELAY   = 0.3             # seconds to wait after setting colour
+TOLERANCE   = 40              # per-channel tolerance for "dominant"
 
 # fixtures
 @pytest.fixture(scope="module")
 def box() -> CameraBox:
     """Create one CameraBox for all tests."""
-    return CameraBox(BOX_URL)
+    box = CameraBox(SERIAL_PORT)
+    yield box
+    box.close()  # Ensure connection is closed after tests
 
 @pytest.fixture(scope="module")
 def cam() -> Webcam:
